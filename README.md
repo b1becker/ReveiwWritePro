@@ -1,3 +1,5 @@
+** This app is meant to help users construct reviews through a series of questions. The questions will generate a prompt to place into a chatbot of their choice to write a compelling and engaging review without undergoing the task of writing the review itself.**
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
