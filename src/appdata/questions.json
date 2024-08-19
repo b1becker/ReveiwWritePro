@@ -1,0 +1,40 @@
+{
+    "questions": [
+        {
+            "id": 1,
+            "question": "What mood do you want to convey about the overall experience?",
+            "options": ["Positive", "Negative", "Neutral"],
+            "userChoice": ""
+        },
+        {
+            "id": 2,
+            "question": "What flavors about the dish should we highlight?",
+            "options": ["Savoury", "Spicy", "Sour/Tangy", "Earthy", "Sweet", "Bitter"],
+            "userChoice": ""
+        },
+        {
+            "id": 3,
+            "question": "What traits best describe the service given at the restaruant?",
+            "options": ["Attentive", "Knowledgable", "Detail Oriented", "Professional", "Unnatentive", "Forgetful"],
+            "userChoice": ""
+        },
+        {
+            "id": 4,
+            "question": "How was the pricing overall for the restaruant?",
+            "options": ["Good Deal", "Overpriced", "Cheap", "Expensive", "Worth It"],
+            "userChoice": ""
+        },
+        {
+            "id": 5,
+            "question": "How was the ambiance of the restaruant?",
+            "options": ["Casual", "Formal", "Cozy", "Elegant", "Rustic", "Modern"],
+            "userChoice": ""
+        },
+        {
+            "id": 6,
+            "question": "How would you rate the restaruant on a scale of 1 to 5",
+            "options": ["1", "2", "3", "4", "5"],
+            "userChoice": ""
+        }
+    ]
+}
