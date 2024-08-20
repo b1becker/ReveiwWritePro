@@ -1,88 +1,68 @@
 .aux-info-container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 50%;
-  }
-  
-  .aux-info-container h2 {
-    text-align: center;
-    color: #333;
-  }
-  
-  .info-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .info-list li {
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .info-list li div {
-    margin-bottom: 8px;
-  }
-  
-  .info-list li input {
-    width: calc(100% - 10px);
-    padding: 5px;
-    margin-left: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .info-list li button {
-    align-self: flex-end;
-    padding: 5px 10px;
-    color: #fff;
-    background-color: #e74c3c;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .info-list li button:hover {
-    background-color: #c0392b;
-  }
-  
-  .add-info-form {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .add-info-form h3 {
-    margin-bottom: 10px;
-  }
-  
-  .add-info-form input {
-    width: 60%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .add-info-form button {
-    padding: 10px 20px;
-    color: #fff;
-    background-color: #2ecc71;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .add-info-form button:hover {
-    background-color: #27ae60;
-  }
-  
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.add-info-form {
+  margin-bottom: 20px;
+}
+
+.add-info-form input[type="text"] {
+  width: 200px;
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.add-info-form button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.add-info-form button:hover {
+  background-color: #45a049;
+}
+
+.info-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.info-list li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-list li input[type="text"] {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.info-list li button {
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.info-list li button:hover {
+  background-color: #e53935;
+}

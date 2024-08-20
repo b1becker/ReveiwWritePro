@@ -6,6 +6,7 @@ import AuxInfo from './AuxInfo';
 import AddressSearch from './AddressSearch';
 import { LoadScript } from '@react-google-maps/api';
 import WelcomeScreen from './WelcomeScreen';
+import Results from './Results';
 
 
 
@@ -14,7 +15,8 @@ function App() {
   const [activeBox, setActiveBox] = useState('map');
   const [data, setData] = useState([]);
   const [showWelcomeScreen, setShowWelcomeScreen] = useState(true);
-
+  const [questionsData, setQuestionsData] = useState([]); // State to hold the questions data
+  const [auxInfoData, setAuxInfoData] = useState([]); // State to hold the aux info data
   const handleClick = (boxName) => {
     setActiveBox(boxName);
   };
@@ -23,9 +25,17 @@ function App() {
     setShowWelcomeScreen(false);
   };
 
+  const handleSaveResults = (questions) => {
+    setQuestionsData(questions);
+  };
+
   const handleAddressSelect = (address) => {
     console.log('Selected Address:', address);
     // You can use the selected address here (e.g., save it to state, send it to your server, etc.)
+  };
+
+  const handleSaveAuxInfo = (information) => {
+    setAuxInfoData(information);
   };
 
   useEffect(() => {
@@ -86,14 +96,14 @@ function App() {
           {
             {
               'map': 
-                <LoadScript googleMapsApiKey="YOUR_GOOGLE_API_KEY" libraries={["places"]}>
+                <LoadScript googleMapsApiKey="YOUR-API-KEY" libraries={["places"]}>
                   <div className="App">
                     <AddressSearch onAddressSelect={handleAddressSelect} />
                   </div>
                 </LoadScript>,
-              'review': <QuestionsForm />,
-              'comments': <AuxInfo />,
-              'output': <h2>hello</h2>
+              'review': <QuestionsForm onSaveResults={handleSaveResults} />,
+              'comments': <AuxInfo onSaveAuxInfo={handleSaveAuxInfo} />,
+              'output': <Results questions={questionsData} auxInfo={auxInfoData}/>  // Display results here
             }[activeBox]
           }
         </>

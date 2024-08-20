@@ -3,50 +3,40 @@ import questionsData from './appdata/questions.json'; // Import the JSON file
 
 
 
-const QuestionsForm = () => {
+const QuestionsForm = ({ onSaveResults }) => {
     const [questions, setQuestions] = useState(questionsData.questions);
 
-    const handleOptionChange = (questionId, selectedOption) => {
-        setQuestions(prevQuestions =>
-            prevQuestions.map(question =>
-                question.id === questionId
-                    ? { ...question, userChoice: selectedOption }
-                    : question
-            )
+    const handleChoiceChange = (id, choice) => {
+        const updatedQuestions = questions.map((q) =>
+          q.id === id ? { ...q, userChoice: choice } : q
         );
-    };
+        setQuestions(updatedQuestions);
+        onSaveResults(updatedQuestions); // Pass updated questions to App.js
+      };
 
     return (
         <div>
-            <h2>Restaurant Review Questions</h2>
-            {questions.map((question) => (
-                <div key={question.id} style={{ marginBottom: '20px' }}>
-                    <h3>{question.question}</h3>
-                    {question.options.map((option, index) => (
-                        <label key={index} style={{ display: 'block', marginBottom: '8px' }}>
-                            <input
-                                type="radio"
-                                name={`question-${question.id}`}
-                                value={option}
-                                checked={question.userChoice === option}
-                                onChange={() => handleOptionChange(question.id, option)}
-                                style={{ marginRight: '10px' }}
-                            />
-                            {option}
-                        </label>
-                    ))}
-                </div>
-            ))}
-            <div>
-                <h3>User Choices Summary:</h3>
-                {questions.map((question) => (
-                    <p key={question.id}>
-                        <strong>{question.question}:</strong> {question.userChoice || 'No selection'}
-                    </p>
-                ))}
+        {questions.map((question) => (
+          <div key={question.id} className="question-block">
+            <h4>{question.question}</h4>
+            <div className="options">
+              {question.options.map((option) => (
+                <label key={option}>
+                  <input
+                    type="radio"
+                    name={`question-${question.id}`}
+                    value={option}
+                    checked={question.userChoice === option}
+                    onChange={(e) => handleChoiceChange(question.id, e.target.value)}
+                  />
+                  {option}
+                </label>
+              ))}
             </div>
-        </div>
-    );
+          </div>
+        ))}
+      </div>
+  );
 };
 
 export default QuestionsForm;

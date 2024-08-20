@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './AuxInfo.css';
+import moreInfoData from './appdata/moreinfo.json'; // Import the JSON file
 
-const AuxInfo = () => {
+const AuxInfo = ({onSaveAuxInfo}) => {
   const [information, setInformation] = useState([]);
-  const [newInfo, setNewInfo] = useState({ name: ''});
+  const [newInfo, setNewInfo] = useState(moreInfoData.information);
 
   // Load initial data from JSON (replace this with actual fetch if you use a server)
   useEffect(() => {
@@ -13,6 +14,8 @@ const AuxInfo = () => {
     setInformation(initialData);
   }, []);
 
+  
+
   const handleAddInfo = () => {
     if (newInfo.name.trim()) {
       const updatedInformation = [
@@ -20,13 +23,19 @@ const AuxInfo = () => {
         { id: information.length + 1, ...newInfo },
       ];
       setInformation(updatedInformation);
-      setNewInfo({ name: ''});
+      setNewInfo({ name: '' });
+
+      // Pass the updated information to the parent component
+      onSaveAuxInfo(updatedInformation);
     }
   };
 
   const handleDeleteInfo = (id) => {
     const updatedInformation = information.filter((item) => item.id !== id);
     setInformation(updatedInformation);
+
+    // Pass the updated information to the parent component
+    onSaveAuxInfo(updatedInformation);
   };
 
   const handleEditInfo = (id, updatedInfo) => {
@@ -34,6 +43,9 @@ const AuxInfo = () => {
       item.id === id ? { ...item, ...updatedInfo } : item
     );
     setInformation(updatedInformation);
+
+    // Pass the updated information to the parent component
+    onSaveAuxInfo(updatedInformation);
   };
 
   const handleInputChange = (e) => {
@@ -54,7 +66,7 @@ const AuxInfo = () => {
         />
         <button onClick={handleAddInfo}>Add Information</button>
       </div>
-      <h3>Manage Information</h3>
+      <h2>Manage Information</h2>
       <ul className="info-list">
         {information.map((item) => (
           <li key={item.id}>
@@ -72,7 +84,6 @@ const AuxInfo = () => {
           </li>
         ))}
       </ul>
-      
     </div>
   );
 };
