@@ -3,8 +3,8 @@ import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocom
 import useOnclickOutside from "react-cool-onclickoutside";
 import './AddressSearch.css';  // Import the CSS file
 
-const AddressSearch = () => {
-  const [selectedAddresses, setSelectedAddresses] = useState([]); // State to store selected addresses
+const AddressSearch = ({selectedAddresses, setSelectedAddresses}) => {
+  
   const {
     ready,
     value,

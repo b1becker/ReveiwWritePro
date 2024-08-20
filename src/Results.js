@@ -1,8 +1,19 @@
 import React from 'react';
 
-const Results = ({ questions, auxInfo }) => {
+const Results = ({ questions, auxInfo, selectedAddresses}) => {
+  
+  if (!Array.isArray(selectedAddresses)) {
+    return <div>No addresses selected</div>;
+  }
+
   return (
     <div>
+      {selectedAddresses.map((address, index) => (
+        <div key={index} >
+          <p>Write a 4-8 paragraph review of</p> {address}
+        </div>
+      ))}
+
       <h3>User Choices Summary:</h3>
       {questions.map((question) => (
         <p key={question.id}>

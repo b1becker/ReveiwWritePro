@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import questionsData from './appdata/questions.json'; // Import the JSON file
+import { useNavigate } from 'react-router-dom';
 
 
 
 const QuestionsForm = ({ onSaveResults }) => {
     const [questions, setQuestions] = useState(questionsData.questions);
+    // const navigate = useNavigate();
+
+    const handleButtonClick = () => {
+        // navigate('/comments');
+      }
 
     const handleChoiceChange = (id, choice) => {
         const updatedQuestions = questions.map((q) =>
@@ -35,6 +41,9 @@ const QuestionsForm = ({ onSaveResults }) => {
             </div>
           </div>
         ))}
+        <button onClick={handleButtonClick} style={{ marginTop: '20px' }}>
+        Next
+      </button>
       </div>
   );
 };

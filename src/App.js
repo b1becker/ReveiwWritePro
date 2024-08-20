@@ -7,18 +7,24 @@ import AddressSearch from './AddressSearch';
 import { LoadScript } from '@react-google-maps/api';
 import WelcomeScreen from './WelcomeScreen';
 import Results from './Results';
-
-
-
+import config from './config';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 
 function App() {
+  const YOUR_API_KEY = config.GOOGLE_API_KEY;
   const [activeBox, setActiveBox] = useState('map');
   const [data, setData] = useState([]);
   const [showWelcomeScreen, setShowWelcomeScreen] = useState(true);
   const [questionsData, setQuestionsData] = useState([]); // State to hold the questions data
   const [auxInfoData, setAuxInfoData] = useState([]); // State to hold the aux info data
+  const [experienceData, setExperienceData] = useState([]);
+  const [selectedAddresses, setSelectedAddresses] = useState([]);
+  const navigate = useNavigate();
+
+
   const handleClick = (boxName) => {
     setActiveBox(boxName);
+    navigate(`/${boxName}`);
   };
 
   const handleStart = () => {
@@ -31,7 +37,7 @@ function App() {
 
   const handleAddressSelect = (address) => {
     console.log('Selected Address:', address);
-    // You can use the selected address here (e.g., save it to state, send it to your server, etc.)
+    setSelectedAddresses((prevAddresses) => [...prevAddresses, address]);
   };
 
   const handleSaveAuxInfo = (information) => {
@@ -42,7 +48,7 @@ function App() {
     let url = '';
     switch (activeBox) {
       case 'map':
-        url = '';
+        url = ''; // No URL for map
         break;
       case 'review':
         url = 'http://localhost:3500/questions';
@@ -54,61 +60,64 @@ function App() {
       default:
         url = 'http://localhost:3500/review';
         break;
-    
     }
-    
-
-  axios.get(url)
-    .then((response) => {
-      setData(response.data);
-    })
-    .catch((error) => {
-      console.error('There was an error fetching the data!', error);
-    });
-}, [activeBox]);
-
   
+    if (url) {
+      axios.get(url)
+        .then((response) => {
+          setData(response.data);
+        })
+        .catch((error) => {
+          console.error('There was an error fetching the data!', error);
+        });
+    }
+  }, [activeBox]);
+
+  const handleDisplayResults = (data) => {
+    setExperienceData(data);
+    setActiveBox('output');
+    navigate('/output');
+  };
 
   return (
-    <div className="App">
-      {showWelcomeScreen ? (
-        <WelcomeScreen onStart={handleStart} />
-      ) : (
-        <>
-          <div className="box-container">
-            <div className={`box ${activeBox === 'map' ? 'active' : ''}`}
-                 onClick={() => handleClick('map')}>
-              Find Location
+      <div className="App">
+        {showWelcomeScreen ? (
+          <WelcomeScreen onStart={handleStart} />
+        ) : (
+          <>
+            <div className="box-container">
+              <div className={`box ${activeBox === 'map' ? 'active' : ''}`}
+                   onClick={() => handleClick('map')}>
+                Find Location
+              </div>
+              <div className={`box ${activeBox === 'review' ? 'active' : ''}`}
+                   onClick={() => handleClick('review')}>
+                Initial Thoughts
+              </div>
+              <div className={`box ${activeBox === 'comments' ? 'active' : ''}`}
+                   onClick={() => handleClick('comments')}>
+                More Info
+              </div>
+              <div className={`box ${activeBox === 'output' ? 'active' : ''}`}
+                   onClick={() => handleClick('output')}>
+                Receive Prompt
+              </div>
             </div>
-            <div className={`box ${activeBox === 'review' ? 'active' : ''}`}
-                 onClick={() => handleClick('review')}>
-              Initial Thoughts
-            </div>
-            <div className={`box ${activeBox === 'comments' ? 'active' : ''}`}
-                 onClick={() => handleClick('comments')}>
-              More Info
-            </div>
-            <div className={`box ${activeBox === 'output' ? 'active' : ''}`}
-                 onClick={() => handleClick('output')}>
-              Receive Prompt
-            </div>
-          </div>
-          {
-            {
-              'map': 
-                <LoadScript googleMapsApiKey="YOUR-API-KEY" libraries={["places"]}>
-                  <div className="App">
-                    <AddressSearch onAddressSelect={handleAddressSelect} />
-                  </div>
-                </LoadScript>,
-              'review': <QuestionsForm onSaveResults={handleSaveResults} />,
-              'comments': <AuxInfo onSaveAuxInfo={handleSaveAuxInfo} />,
-              'output': <Results questions={questionsData} auxInfo={auxInfoData}/>  // Display results here
-            }[activeBox]
-          }
-        </>
-      )}
-    </div>
+
+            <Routes>
+              <Route path="/map" element={
+                <LoadScript googleMapsApiKey={YOUR_API_KEY} libraries={["places"]}>
+                  <AddressSearch onAddressSelect={handleAddressSelect} selectedAddresses={selectedAddresses} setSelectedAddresses={setSelectedAddresses} />
+                </LoadScript>
+              } />
+              <Route path="/review" element={<QuestionsForm onSaveResults={handleSaveResults} />} />
+              <Route path="/comments" element={<AuxInfo onSaveAuxInfo={handleSaveAuxInfo} onDisplayResults={handleDisplayResults} />} />
+              <Route path="/output" element={<Results questions={questionsData} auxInfo={auxInfoData} selectedAddresses={selectedAddresses} />} />
+            </Routes>
+          </>
+        )}
+      </div>
+    
   );
 }
 
