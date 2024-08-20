@@ -1,3 +1,6 @@
+** This app is meant to help users construct reviews through a series of questions. The questions will generate a prompt to place into a chatbot of their choice to write a compelling and engaging review without undergoing the task of writing the review itself.**
+Many chatbot apps for restaruant reviews make the user essentially put as much effort in to writing the review compared to if they had completed on their own. This app asks user specific questions on the restaruant experience in order to take advantage of ai to write a compelling review.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
