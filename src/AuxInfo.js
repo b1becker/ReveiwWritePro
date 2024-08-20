@@ -3,7 +3,7 @@ import './AuxInfo.css';
 import moreInfoData from './appdata/moreinfo.json'; // Import the JSON file
 import customerInfoData from './appdata/customerexperience.json'; // Import the JSON file
 
-const AuxInfo = ({ onSaveAuxInfo, onDisplayResults }) => {
+const AuxInfo = ({ onSaveAuxInfo, onDisplayResults, handleClick }) => {
   // For the information about the food
   const [information, setInformation] = useState([]);
   const [newInfo, setNewInfo] = useState({ name: '' });
@@ -11,6 +11,10 @@ const AuxInfo = ({ onSaveAuxInfo, onDisplayResults }) => {
   // For the information about the experience
   const [customerExperience, setCustomerExperience] = useState([]);
   const [newExperience, setNewCustomerExperience] = useState({ name: '' });
+
+  const handleButtonClick = () => {
+    handleClick('output');
+  }
 
   // Load initial data from JSON (replace this with actual fetch if you use a server)
   useEffect(() => {
@@ -163,6 +167,9 @@ const AuxInfo = ({ onSaveAuxInfo, onDisplayResults }) => {
           ))}
         </ul>
       </div>
+      <button onClick={handleButtonClick} style={{ marginTop: '20px' }}>
+        Next
+      </button>
     </div>
   );
 };

@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const QuestionsForm = ({ onSaveResults }) => {
+const QuestionsForm = ({ onSaveResults, handleClick }) => {
     const [questions, setQuestions] = useState(questionsData.questions);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleButtonClick = () => {
-        // navigate('/comments');
+        handleClick('comments');
       }
 
     const handleChoiceChange = (id, choice) => {

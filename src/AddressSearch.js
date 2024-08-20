@@ -3,8 +3,8 @@ import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocom
 import useOnclickOutside from "react-cool-onclickoutside";
 import './AddressSearch.css';  // Import the CSS file
 
-const AddressSearch = ({selectedAddresses, setSelectedAddresses}) => {
-  
+const AddressSearch = ({selectedAddresses, setSelectedAddresses, handleClick}) => {
+
   const {
     ready,
     value,
@@ -17,6 +17,11 @@ const AddressSearch = ({selectedAddresses, setSelectedAddresses}) => {
     },
     debounce: 300,
   });
+
+  const handleButtonClick = () => {
+    handleClick('review');
+  };
+
   const ref = useRef();
   useOnclickOutside(ref, () => {
     clearSuggestions();
@@ -29,10 +34,18 @@ const AddressSearch = ({selectedAddresses, setSelectedAddresses}) => {
   const handleSelect =
     ({ description }) =>
     () => {
-      // Add the selected address to the list of selected addresses
       setSelectedAddresses((prevAddresses) => [...prevAddresses, description]);
-      clearSuggestions();  // Clear the suggestions after selection
+      clearSuggestions();
+      setValue(''); // Clear the input field after selecting an address
     };
+
+  const handleManualSubmit = () => {
+    if (value.trim()) {
+      setSelectedAddresses((prevAddresses) => [...prevAddresses, value]);
+      setValue('');  // Clear the input after submission
+      clearSuggestions();  // Ensure that autocomplete suggestions are cleared
+    }
+  };
 
   const renderSuggestions = () =>
     data.map((suggestion) => {
@@ -55,19 +68,26 @@ const AddressSearch = ({selectedAddresses, setSelectedAddresses}) => {
         value={value}
         onChange={handleInput}
         disabled={!ready}
-        placeholder="Search an address"
+        placeholder="Search or enter an address"
       />
-      
       {status === "OK" && <ul>{renderSuggestions()}</ul>}
+
+      <button onClick={handleManualSubmit} style={{ marginTop: '10px' }}>
+        Submit
+      </button>
+
       <div className="selected-addresses">
-      
         {selectedAddresses.map((address, index) => (
           <div key={index} className="address-box">
-            <h2>Your Restaruant: </h2>
+            <h2>Your Restaurant:</h2>
             {address}
           </div>
         ))}
       </div>
+      
+      <button onClick={handleButtonClick} style={{ marginTop: '20px' }}>
+        Next
+      </button>
     </div>
   );
 };

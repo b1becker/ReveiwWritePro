@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Results = ({ questions, auxInfo, selectedAddresses}) => {
+const Results = ({ questions, auxInfo, selectedAddresses, handleFinish}) => {
   
   if (!Array.isArray(selectedAddresses)) {
     return <div>No addresses selected</div>;
@@ -8,26 +8,30 @@ const Results = ({ questions, auxInfo, selectedAddresses}) => {
 
   return (
     <div>
+      <p>Write a 4-8 paragraph review of</p>
       {selectedAddresses.map((address, index) => (
         <div key={index} >
-          <p>Write a 4-8 paragraph review of</p> {address}
+          {address}
         </div>
       ))}
 
-      <h3>User Choices Summary:</h3>
+      <p>Taking into account the information to these questions:</p>
       {questions.map((question) => (
         <p key={question.id}>
           <strong>{question.question}:</strong> {question.userChoice || 'No selection'}
         </p>
       ))}
 
-      <h3>Auxiliary Information:</h3>
+      <p>Some Additional information to consider:</p>
       {auxInfo.map((item) => (
         <p key={item.id}>
           <strong>Name:</strong> {item.name} <br />
-          <strong>Email:</strong> {item.email || 'No email provided'}
         </p>
       ))}
+      <button onClick={handleFinish} style={{ marginTop: '20px' }}>
+        Return To Home
+      </button>
+
     </div>
   );
 };

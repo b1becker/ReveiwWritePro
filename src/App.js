@@ -31,6 +31,10 @@ function App() {
     setShowWelcomeScreen(false);
   };
 
+  const handleFinish = () => {
+    setShowWelcomeScreen(true);
+  };
+
   const handleSaveResults = (questions) => {
     setQuestionsData(questions);
   };
@@ -107,12 +111,12 @@ function App() {
             <Routes>
               <Route path="/map" element={
                 <LoadScript googleMapsApiKey={YOUR_API_KEY} libraries={["places"]}>
-                  <AddressSearch onAddressSelect={handleAddressSelect} selectedAddresses={selectedAddresses} setSelectedAddresses={setSelectedAddresses} />
+                  <AddressSearch onAddressSelect={handleAddressSelect} selectedAddresses={selectedAddresses} setSelectedAddresses={setSelectedAddresses} handleClick={handleClick}/>
                 </LoadScript>
               } />
-              <Route path="/review" element={<QuestionsForm onSaveResults={handleSaveResults} />} />
-              <Route path="/comments" element={<AuxInfo onSaveAuxInfo={handleSaveAuxInfo} onDisplayResults={handleDisplayResults} />} />
-              <Route path="/output" element={<Results questions={questionsData} auxInfo={auxInfoData} selectedAddresses={selectedAddresses} />} />
+              <Route path="/review" element={<QuestionsForm onSaveResults={handleSaveResults} handleClick={handleClick}/>} />
+              <Route path="/comments" element={<AuxInfo onSaveAuxInfo={handleSaveAuxInfo} onDisplayResults={handleDisplayResults} handleClick={handleClick} />} />
+              <Route path="/output" element={<Results questions={questionsData} auxInfo={auxInfoData} selectedAddresses={selectedAddresses} handleFinish={handleFinish}/>} />
             </Routes>
           </>
         )}
