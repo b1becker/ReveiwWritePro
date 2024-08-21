@@ -89,22 +89,25 @@ function App() {
           <WelcomeScreen onStart={handleStart} />
         ) : (
           <>
-            <div className="box-container">
-              <div className={`box ${activeBox === 'map' ? 'active' : ''}`}
-                   onClick={() => handleClick('map')}>
-                Find Location
-              </div>
-              <div className={`box ${activeBox === 'review' ? 'active' : ''}`}
-                   onClick={() => handleClick('review')}>
-                Initial Thoughts
-              </div>
-              <div className={`box ${activeBox === 'comments' ? 'active' : ''}`}
-                   onClick={() => handleClick('comments')}>
-                More Info
-              </div>
-              <div className={`box ${activeBox === 'output' ? 'active' : ''}`}
-                   onClick={() => handleClick('output')}>
-                Receive Prompt
+            <div className='navbar'>
+              <h1 onClick={handleFinish}>ReviewWritePro</h1>
+              <div className="box-container">
+                <div className={`box ${activeBox === 'map' ? 'active' : ''}`}
+                    onClick={() => handleClick('map')}>
+                  Find Location
+                </div>
+                <div className={`box ${activeBox === 'review' ? 'active' : ''}`}
+                    onClick={() => handleClick('review')}>
+                  Initial Thoughts
+                </div>
+                <div className={`box ${activeBox === 'comments' ? 'active' : ''}`}
+                    onClick={() => handleClick('comments')}>
+                  More Info
+                </div>
+                <div className={`box ${activeBox === 'output' ? 'active' : ''}`}
+                    onClick={() => handleClick('output')}>
+                  Receive Prompt
+                </div>
               </div>
             </div>
 

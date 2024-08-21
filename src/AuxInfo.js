@@ -107,7 +107,7 @@ const AuxInfo = ({ onSaveAuxInfo, onDisplayResults, handleClick }) => {
     <div className='aux-info-display'>
       <div className="aux-info-container">
         <div className="add-info-form">
-          <h3>Add New Information</h3>
+          <h2>Add Dishes You Wish to Discuss</h2>
           <input
             type="text"
             name="name"
@@ -115,7 +115,7 @@ const AuxInfo = ({ onSaveAuxInfo, onDisplayResults, handleClick }) => {
             value={newInfo.name}
             onChange={handleInputChange}
           />
-          <button onClick={handleAddInfo}>Add Information</button>
+          <button onClick={handleAddInfo}>Add Dish</button>
         </div>
         <h2>Manage Information</h2>
         <ul className="info-list">

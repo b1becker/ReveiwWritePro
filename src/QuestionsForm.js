@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import questionsData from './appdata/questions.json'; // Import the JSON file
 import { useNavigate } from 'react-router-dom';
-
+import './QuestionForm.css';
 
 
 const QuestionsForm = ({ onSaveResults, handleClick }) => {
