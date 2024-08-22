@@ -12,9 +12,11 @@
     font-size: 36px;
     margin-bottom: 20px;
     color: #333;
+    padding: 25px;
   }
   
   .start-button {
+    margin-top: 40px;
     padding: 10px 20px;
     font-size: 18px;
     color: white;
@@ -23,6 +25,7 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 200px;
   }
   
   .start-button:hover {

@@ -21,7 +21,8 @@ const QuestionsForm = ({ onSaveResults, handleClick }) => {
       };
 
     return (
-        <div>
+        <div className='question-container'>
+          
         {questions.map((question) => (
           <div key={question.id} className="question-block">
             <h4>{question.question}</h4>

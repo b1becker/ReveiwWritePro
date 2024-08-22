@@ -1,3 +1,9 @@
+.merriweather-bold {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
 .aux-info-container {
   margin: 20px;
   padding: 20px;
@@ -20,6 +26,7 @@
 
 .add-info-form button {
   padding: 5px 10px;
+  width: 100px;
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -34,6 +41,8 @@
 .info-list {
   list-style-type: none;
   padding: 0;
+  width: 500px;
+
 }
 
 .info-list li {
@@ -56,11 +65,13 @@
 
 .info-list li button {
   padding: 5px 10px;
+  width: 100px;
   background-color: #f44336;
   color: white;
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  justify-content: center;
 }
 
 .info-list li button:hover {

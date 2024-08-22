@@ -1,4 +1,5 @@
 /* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
 
 /* Reset some basic styles */
 body, h1, p, div {
@@ -12,6 +13,9 @@ body {
   background-color: #f4f4f4;
   color: #333;
   line-height: 1.6;
+  font-family: 'Merriweather', serif;
+  margin: 0 auto;
+  
 }
 
 .App {
@@ -19,6 +23,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  
 }
 
 .navbar {
@@ -28,6 +33,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 50px;
 }
 
 .navbar h1 {

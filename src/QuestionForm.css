@@ -7,7 +7,10 @@
   border-radius: 8px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 75%;
+  
 }
+
 
 .question-block h4 {
   margin: 0 0 10px;
@@ -45,4 +48,11 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+
+ul, ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }

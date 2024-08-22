@@ -20,7 +20,7 @@ const Results = ({ questions, auxInfo, selectedAddresses, handleFinish }) => {
   return (
     <div>
       <div className="cp-box" ref={boxRef}>
-        <p>Write a 4-8 paragraph review of</p>
+        <p>Write a 4-8 sentence review of</p>
         {selectedAddresses.map((address, index) => (
           <div key={index}>
             {address}
